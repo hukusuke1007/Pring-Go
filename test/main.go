@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	pring "github.com/hukusuke1007/Pring-Go"
+	pring "github.com/hukusuke1007/pring-go"
 )
 
 func main() {
