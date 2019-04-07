@@ -18,8 +18,7 @@ func main() {
 }
 
 func test() {
-	pring.TestPring()
-	fmt.Println("Hello")
+	pring.TravisTest()
 }
 
 func firebaseInit() *firestore.Client {
