@@ -17,10 +17,6 @@ func main() {
 	// firebaseCollectionSample()
 }
 
-func test() {
-	pring.TravisTest()
-}
-
 func firebaseInit() *firestore.Client {
 	opt := option.WithCredentialsFile("test/secretKey/serviceAccountKey.json")
 	app, err := firebase.NewApp(context.Background(), nil, opt)
