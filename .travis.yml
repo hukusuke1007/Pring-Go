@@ -20,7 +20,7 @@ script:
 - unused $(go list ./... | grep -v /vendor/)
 - gosimple $(go list ./... | grep -v /vendor/)
 - staticcheck $(go list ./... | grep -v /vendor/)
-- go test -cover -coverpkg github.com/smith-30/go-ffprobe -coverprofile go-ffprobe.coverprofile
+- go test -cover -coverpkg github.com/hukusuke1007/pring-go -coverprofile pring-go.coverprofile
 after_script:
 - gover
 - goveralls -coverprofile=gover.coverprofile -repotoken $COVERALLS_TOKEN
