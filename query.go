@@ -1,4 +1,4 @@
-package pring
+package ballcap
 
 import (
 	firestore "cloud.google.com/go/firestore"

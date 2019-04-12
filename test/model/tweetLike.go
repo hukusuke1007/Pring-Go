@@ -1,7 +1,7 @@
 package model
 
 import (
-	pring "github.com/hukusuke1007/pring-go"
+	ballcap "github.com/hukusuke1007/ballcap-go"
 
 	firestore "cloud.google.com/go/firestore"
 )
@@ -11,7 +11,7 @@ const TweetLikeCollectionPath = "tweetlike"
 
 // TweetLike ...
 type TweetLike struct {
-	*pring.Base
+	*ballcap.Base
 	Data TweetLikeData
 }
 
@@ -22,11 +22,11 @@ type TweetLikeData struct {
 }
 
 // NewTweetLike constructor
-func NewTweetLike(client *firestore.Client, path *pring.Collection, value *pring.Value) *TweetLike {
+func NewTweetLike(client *firestore.Client, path *ballcap.Collection, value *ballcap.Value) *TweetLike {
 	element := new(TweetLike)
-	element.Base = new(pring.Base)
+	element.Base = new(ballcap.Base)
 	if path == nil {
-		path := new(pring.Collection)
+		path := new(ballcap.Collection)
 		path.Path = TweetLikeCollectionPath
 	}
 	if value != nil {

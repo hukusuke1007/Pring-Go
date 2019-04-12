@@ -60,12 +60,12 @@ func firebaseDocumentSample() {
 
 	// Delete
 	{
-		user := model.NewUser(client, &pring.Collection{ID: ID, Path: model.UserCollectionPath}, nil)
-		err := user.Delete()
-		if err != nil {
-			fmt.Println("err", err)
-		}
-		fmt.Println("result", user.Data)
+		// user := model.NewUser(client, &pring.Collection{ID: ID, Path: model.UserCollectionPath}, nil)
+		// err := user.Delete()
+		// if err != nil {
+		// 	fmt.Println("err", err)
+		// }
+		// fmt.Println("result", user.Data)
 	}
 }
 

@@ -1,7 +1,7 @@
 package model
 
 import (
-	pring "github.com/hukusuke1007/pring-go"
+	ballcap "github.com/hukusuke1007/ballcap-go"
 
 	firestore "cloud.google.com/go/firestore"
 )
@@ -11,7 +11,7 @@ const UserCollectionPath = "user"
 
 // User ...
 type User struct {
-	*pring.Base
+	*ballcap.Base
 	Data          UserData // Flat
 	SubCollection struct {
 		Secret     string
@@ -28,11 +28,11 @@ type UserData struct {
 }
 
 // NewUser constructor
-func NewUser(client *firestore.Client, path *pring.Collection, value *pring.Value) *User {
+func NewUser(client *firestore.Client, path *ballcap.Collection, value *ballcap.Value) *User {
 	element := new(User)
-	element.Base = new(pring.Base)
+	element.Base = new(ballcap.Base)
 	if path == nil {
-		path = new(pring.Collection)
+		path = new(ballcap.Collection)
 		path.Path = UserCollectionPath
 	}
 	if value != nil {
