@@ -7,8 +7,8 @@ import (
 
 	firestore "cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go"
-	pring "github.com/hukusuke1007/pring-go"
-	model "github.com/hukusuke1007/pring-go/test/model"
+	ballcap "github.com/hukusuke1007/ballcap-go"
+	model "github.com/hukusuke1007/ballcap-go/test/model"
 	"google.golang.org/api/option"
 )
 
@@ -39,7 +39,7 @@ func firebaseDocumentSample() {
 	// Save
 	{
 		user := model.NewUser(client, nil, nil)
-		user.Data.Name = "pring-go"
+		user.Data.Name = "ballcap-go"
 		user.Data.Age = 100
 		err := user.Save()
 		if err != nil {
@@ -50,7 +50,7 @@ func firebaseDocumentSample() {
 
 	// Get
 	{
-		user := model.NewUser(client, &pring.Collection{ID: ID, Path: model.UserCollectionPath}, nil)
+		user := model.NewUser(client, &ballcap.Collection{ID: ID, Path: model.UserCollectionPath}, nil)
 		_, err := user.Get()
 		if err != nil {
 			fmt.Println("err", err)
@@ -60,7 +60,7 @@ func firebaseDocumentSample() {
 
 	// Delete
 	{
-		// user := model.NewUser(client, &pring.Collection{ID: ID, Path: model.UserCollectionPath}, nil)
+		// user := model.NewUser(client, &ballcap.Collection{ID: ID, Path: model.UserCollectionPath}, nil)
 		// err := user.Delete()
 		// if err != nil {
 		// 	fmt.Println("err", err)
@@ -86,7 +86,7 @@ func firebaseCollectionSet() {
 		user.Data.Age = 1
 		user.Save()
 
-		secret := model.NewSecret(client, &pring.Collection{Path: user.SubCollection.Secret}, nil)
+		secret := model.NewSecret(client, &ballcap.Collection{Path: user.SubCollection.Secret}, nil)
 		secret.Data.Password = "password"
 		secret.Save()
 
@@ -118,17 +118,17 @@ func firebaseCollectionSet() {
 
 	// For Batch
 	{
-		user := model.NewUser(client, nil, nil)
-		user.Data.Name = "testtest"
-		user.Data.Age = 20
+		// user := model.NewUser(client, nil, nil)
+		// user.Data.Name = "testtest"
+		// user.Data.Age = 20
 
-		secret := model.NewSecret(client, &pring.Collection{Path: user.SubCollection.Secret}, nil)
-		secret.Data.Password = "passworddes"
+		// secret := model.NewSecret(client, &ballcap.Collection{Path: user.SubCollection.Secret}, nil)
+		// secret.Data.Password = "passworddes"
 
-		documents := []pring.BatchDocument{}
-		documents = append(documents, user.GetBatchDocument(user.Pack()))
-		documents = append(documents, secret.GetBatchDocument(secret.Pack()))
-		pring.Batch(client, documents)
+		// documents := []ballcap.BatchDocument{}
+		// documents = append(documents, user.GetBatchDocument(user.Pack()))
+		// documents = append(documents, secret.GetBatchDocument(secret.Pack()))
+		// ballcap.Batch(client, documents)
 	}
 
 	// // Data set
@@ -136,7 +136,7 @@ func firebaseCollectionSet() {
 	// 	// Prepare
 	// 	ctx := context.Background()
 	// 	ref := client.Collection(path)
-	// 	users := []pring.User{}
+	// 	users := []ballcap.User{}
 	// 	for _, u := range users {
 	// 		data := u.Pack()
 	// 		if _, err := ref.Doc(u.Data.UID).Set(ctx, data, firestore.MergeAll); err != nil {
@@ -148,13 +148,13 @@ func firebaseCollectionSet() {
 
 func firebaseCollectionGet() {
 	path := model.UserCollectionPath
-	collectionPath := &pring.Collection{Path: path}
+	collectionPath := &ballcap.Collection{Path: path}
 	client := firebaseInit()
 
 	// Datasource
 	{
 		users := []model.User{}
-		values := pring.NewCollection(client, path).Where("isActive", "==", false).Limit(10).DataSource().Get()
+		values := ballcap.NewCollection(client, path).Where("isActive", "==", false).Limit(10).DataSource().Get()
 		for _, value := range values {
 			user := model.NewUser(client, collectionPath, &value)
 			users = append(users, *user)
@@ -180,7 +180,7 @@ func firebaseCollectionGet() {
 	// 			log.Fatalf("error client app: %v\n", err)
 	// 		}
 	// 		data := doc.Data()
-	// 		user := pring.User{&pring.Base{}, pring.UserData{}}
+	// 		user := ballcap.User{&ballcap.Base{}, ballcap.UserData{}}
 	// 		if err := user.MapToStruct(data, &user.Data); err == nil {
 	// 			fmt.Println(user.Data)
 	// 		}
